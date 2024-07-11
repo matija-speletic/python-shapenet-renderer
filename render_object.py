@@ -46,7 +46,7 @@ def render_object(obj_path:str, camera_poses:np.ndarray, light_poses:np.ndarray,
 
     # Rendering
     r = pyrender.OffscreenRenderer(width, height)
-    flags = pyrender.RenderFlags.SHADOWS_SPOT
+    flags = pyrender.RenderFlags.SHADOWS_ALL
     for i, (camera_pose, light_pose) in enumerate(zip(camera_poses, light_poses)):
         scene.set_pose(camera_node, pose=camera_pose+T_corr)
         scene.set_pose(light_node, pose=light_pose+T_corr)
@@ -56,7 +56,7 @@ def render_object(obj_path:str, camera_poses:np.ndarray, light_poses:np.ndarray,
 
 
 if __name__ == '__main__':
-    obj_path = r"C:\Users\matij\Downloads\ShapeNetCore.v2\ShapeNetCore.v2\04530566\5b86640d3bc2e43decac3f40526a2cc2\models\model_normalized.obj"
-    camera_poses = np.load('cam_poses.npy')
-    light_poses = np.load('light_poses.npy')
+    obj_path = r"D:\Matija\data\ShapeNetCore.v2\04530566\5b86640d3bc2e43decac3f40526a2cc2\models\model_normalized.obj"
+    camera_poses = np.load('./example/camera_poses.npy')
+    light_poses = np.load('./example/light_poses.npy')
     render_object(obj_path, camera_poses, light_poses)

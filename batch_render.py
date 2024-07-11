@@ -8,11 +8,11 @@ import traceback
 import logging
 
 
-SHAPENET_PATH = Path(r'.\example')
-LOG_FILE = r'.\example\render.log'
-CAMERA_POSES = np.load('.\example\camera_poses.npy')
-LIGHT_POSES = np.load('.\example\light_poses.npy')
-CPU_COUNT = multiprocessing.cpu_count()
+SHAPENET_PATH = Path(r'D:\Matija\data\ShapeNetCore.v2')
+LOG_FILE = r'.\render.log'
+CAMERA_POSES = np.load(r'.\example\camera_poses.npy')
+LIGHT_POSES = np.load(r'.\example\light_poses.npy')
+CPU_COUNT = multiprocessing.cpu_count()-5
 
 logging.basicConfig(filename=LOG_FILE)
 cad_paths = list(SHAPENET_PATH.glob('**/*.obj'))

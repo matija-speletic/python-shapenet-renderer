@@ -9,7 +9,7 @@ import trimesh
 
 
 SHAPENET_PATH = Path(
-    r'C:\Users\matij\Downloads\ShapeNetCore.v2\ShapeNetCore.v2')
+    r'D:\Matija\data\ShapeNetCore.v2')
 LOG_FILE = 'convert.log'
 logging.basicConfig(filename=LOG_FILE)
 
@@ -32,7 +32,7 @@ def convert_obj_to_npy(file_index):
 
 def run():
 
-    num_cores = multiprocessing.cpu_count()
+    num_cores = multiprocessing.cpu_count()-7
     pool = multiprocessing.Pool(processes=num_cores)
     _ = list(
         tqdm(
