@@ -51,17 +51,29 @@ def generate_poses(n_poses=4, distance=0.8, angle_jitter=-0.1):
         [-np.sin(pose_angle), 0, np.cos(pose_angle), 0],
         [0, 0, 0, 1]
     ])
-    lig_offset = np.pi/16
+    lig_offset = np.pi/10
+    R_z_light = np.array([
+        [np.cos(-lig_offset), -np.sin(-lig_offset), 0, 0],
+        [np.sin(-lig_offset), np.cos(-lig_offset), 0, 0],
+        [0, 0, 1, 0],
+        [0, 0, 0, 1]
+    ])
     R_y_light = np.array([
         [np.cos(lig_offset), 0, np.sin(lig_offset), 0],
         [0, 1, 0, 0.1],
         [-np.sin(lig_offset), 0, np.cos(lig_offset), 0],
         [0, 0, 0, 1]
     ])
+    R_x_light = np.array([
+        [1, 0, 0, 0],
+        [0, np.cos(lig_offset), -np.sin(lig_offset), 0],
+        [0, np.sin(lig_offset), np.cos(lig_offset), 0],
+        [0, 0, 0, 1]
+    ])
     cam_pose = create_pose_matrix(
         [distance, distance*np.sqrt(3)/2, distance], 
         [-np.pi/6, np.pi/4, 0])
-    light_pose = R_y_light@cam_pose
+    light_pose = R_z_light@R_y_light@R_x_light@cam_pose
     cam_poses = np.array([cam_pose])
     light_poses = np.array([light_pose])
 

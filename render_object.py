@@ -6,9 +6,9 @@ from PIL import Image
 
 
 def render_object(obj_path:str, camera_poses:np.ndarray, light_poses:np.ndarray, 
-                  width=512, height=512, ambient_light=[0.1, 0.1, 0.1], 
-                  light_color=[1.0, 1.0, 1.0], light_intensity=2.7,
-                  inner_cone_angle=np.pi/10.0, outer_cone_angle=np.pi/6.0):
+                  width=1024, height=1024, ambient_light=[0.14, 0.14, 0.14], 
+                  light_color=[1.0, 1.0, 1.0], light_intensity=5,
+                  inner_cone_angle=np.pi/6.0, outer_cone_angle=np.pi/6.0):
     obj_path = Path(obj_path)
     if not obj_path.exists():
         raise FileNotFoundError(f"Object file not found at {obj_path}")
@@ -56,7 +56,7 @@ def render_object(obj_path:str, camera_poses:np.ndarray, light_poses:np.ndarray,
 
 
 if __name__ == '__main__':
-    obj_path = r"D:\Matija\data\ShapeNetCore.v2\04530566\5b86640d3bc2e43decac3f40526a2cc2\models\model_normalized.obj"
+    obj_path = r"C:\Users\matij\Downloads\ShapeNetCore.v2\test\574ae16c1b6cabbc8a3f1a8dd89692c6\models\model_normalized.obj"
     camera_poses = np.load('./example/camera_poses.npy')
     light_poses = np.load('./example/light_poses.npy')
     render_object(obj_path, camera_poses, light_poses)
